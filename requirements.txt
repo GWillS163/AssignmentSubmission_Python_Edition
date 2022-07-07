@@ -1,9 +1,4 @@
-beautifulsoup4==4.11.1
-bs4==0.0.1
-certifi==2021.10.8
-chardet==4.0.0
-charset-normalizer==2.0.10
-cycler==0.11.0
+
 distlib==0.3.4
 filelock==3.7.1
 fonttools==4.32.0
