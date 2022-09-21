@@ -1,21 +1,25 @@
 
-# gwills用来拿到作业规则 和 作业提交
-file_rule_acc = 'gwills@qq.com'
-file_rule_psd = 'cadhygufulxxbadc'  # 'vhqyzcgnyogiijib'
-send_to = "gwills28@qq.com"
+# 公共邮箱用来收到作业规则 和 作业提交 - public mailbox which is used to receive the job rules and job submission
+from secret import *
+file_rule_acc = file_rule_acc
+file_rule_psd = file_rule_psd
+send_to = send_to
 
-# testDDL = '2022-05-31'
+# 本地配置路径 - local configuration path
 ConfFilePath = 'D:\\'
-ConfFile = 'D:\\AssginConf.ini'
-img_path = 'D:\\AssginImg.jpg'
+ConfFile = 'D:\\AssignConf.ini'
+img_path = 'D:\\AssignImg.jpg'
 LocalSendHistory = 'D:\\LocalSendHistory.txt'
+
+# 其他配置 - other configuration
 encoding = 'utf-8'
+version = "3.3"
 
-version = "3.3"  # NOGUI未使用
-
+# 邮件名Flag - mail name flag
 submit_mail_flag = '[客户端作业提交]'
 update_mail_flag = "[RuleUpdate]"
 receive_mail_flag = "[接收提醒]"
+
 
 # DingGrandfather = """..................................................................................................................................................................................................................................
 # ..................................................................................................................................................................................................................................

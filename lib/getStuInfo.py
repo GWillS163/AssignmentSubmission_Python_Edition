@@ -1,4 +1,4 @@
-from db.stuInfo import database_string
+from db.realStuInfo import database_string
 
 
 class student():

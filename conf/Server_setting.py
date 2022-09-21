@@ -1,27 +1,28 @@
-from conf.Client_setting import *
+from secret import *
 
-czjtuacc = '19852331@czjtu.edu.cn'
-czjtupsd = 'MJQ' + str(4234492 - 4234234) + '.mjq'
+userAcc = userAcc
+userPsd = userPsd
 
-username = "19852294@czjtu.edu.cn"
-password = "Czjtu.123"
+username = username
+password = password
 
-file_inbox_acc = "gwills28@qq.com"
-file_inbox_psd = "qzojacoaijlwdgbd"
+file_inbox_acc = file_inbox_acc
+file_inbox_psd = file_inbox_psd
 
-test_passwd = 'Czjtu.123'
-test_account = '19852294@czjtu.edu.cn'
+test_passwd = test_passwd
+test_account = test_account
 
 # 下载作业的默认配置
-download_path = "D:\system\桌面\\"
+download_path = r"D:\system\桌面\\"
 
 # 下发作业的默认配置
-local_conf = 'AssginConf.ini'  # 不要乱改名！，客户端会收不到的！
+local_conf = 'AssignConf.ini'  # 不要乱改名！，客户端会收不到的！
 config_folder = "..\\log\\config_history\\"
 csvFile = r'D:\Project\hbxy_tools_env\tool_reconstruct_assignment\conf\Server_dispatch_summarize.csv'
 Server_setting = r'D:\Project\hbxy_tools_env\tool_reconstruct_assignment\conf\Server_setting.py'
 
-img_conf = ''  # r"D:\Project\hbxy_tools_env\tool_reconstruct_assignment\log\config_history\AssginImg-20220503_173254.jpg"
+img_conf = ''  # r"D:\Project\hbxy_tools_env\tool_reconstruct_assignment\log\config_history\AssginImg-20220503_173254
+# .jpg"
 update_info = """
 [UpdateInfo]
 acclaim =  

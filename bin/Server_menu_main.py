@@ -1,7 +1,7 @@
 import sys
 sys.path.append("..")
 from bin.Server_check_main import check_status_main
-from lib.lib_base import acquireSecletion_raw
+from lib.lib_base import acquireSelection_raw
 from core.Server_DespatchFileRule import *
 from core.Server_receive_mail import *
 
@@ -22,5 +22,5 @@ if __name__ == '__main__':
                      '查看本地作业': check_status_main,
                      }
         lst = [i for i in menu_list.keys()]
-        choice = acquireSecletion_raw(lst)
+        choice = acquireSelection_raw(lst)
         menu_(menu_list[lst[choice]])

@@ -1,14 +1,11 @@
 from lib.check_initial import default_config, default_csv
 from lib.check_status_lib import get_student_name_list
-from lib.lib_base import highlight_str, acquireSecletion_multi
+from lib.lib_base import highlight_str, acquireSelection_multi
 from core.check_core import get_simple_stu_status_lst, simple_print_form, simple_print_not_rule, get_sub_unsub_list
 from conf.Server_setting import conf_file, init_data_file
 import os.path
 import configparser
 import csv
-
-# sys.path.append("D:\Project\hbxy_tools_env")  # 添加工作目录
-# conf_file = 'D:\Tools\config.ini' #TODO: 仅测试
 
 
 def init():
@@ -18,7 +15,7 @@ def init():
             f.write(default_config)
         print(highlight_str(f'未发现配置文件，已初始化. 请留意同目录下的{conf_file}', 'green', 'OK'))
 
-    def make_datacsv():
+    def make_data_csv():
         with open(init_data_file, 'w', encoding='gbk') as f:
             f.write(default_csv)
             csv.writer(f)
@@ -30,7 +27,7 @@ def init():
     # 首次启动:
     if not os.path.exists(conf_file):
         make_confile()
-        make_datacsv()
+        make_data_csv()
         print(highlight_str('首次启动初始化完成，留意新建了两个配置文件', 'green', 'OK'))
         print(highlight_str(f'请配置{conf_file}内 几个初始键值，再次双击运行本软件', 'yellow', 'Notice'))
         print(highlight_str(f'ヾ(￣▽￣)Bye~Bye~', 'red', '再见'))
@@ -73,7 +70,7 @@ def init():
             print('数据编码错误！')
             return
     else:
-        make_datacsv()
+        make_data_csv()
         return
     return path_list, stuobj_lst, student_list, dataHeader, display_col
 
@@ -91,7 +88,7 @@ def check_status_main():
     n = 1
     select_path_list = []
     while True:
-        raw_path_list, stuobj_lst, student_name_list, dataHeader, display_col = init()
+        raw_path_list, stuObjLst, student_name_list, dataHeader, display_col = init()
         # 存储合规路径
         valid_path_list = []
         for path in raw_path_list:
@@ -112,7 +109,7 @@ def check_status_main():
 
         # 把数据存到stu obj内， 会方便很多
         stu_status_lst,  not_rule_lst_all \
-            = get_simple_stu_status_lst(stuobj_lst, path_list)
+            = get_simple_stu_status_lst(stuObjLst, path_list)
         SubmittedLst, UnSubmittedLst = get_sub_unsub_list(stu_status_lst, curriculum_lst)
         simple_print_form(SubmittedLst, curriculum_lst_display, display_col)
         simple_print_form(UnSubmittedLst, curriculum_lst_display, display_col)
@@ -121,7 +118,7 @@ def check_status_main():
         simple_print_not_rule(not_rule_lst_all)
 
         print(highlight_str("输入选择项 筛选仅显示某项作业", 'green', '重新运行'))
-        select_path_list = acquireSecletion_multi(valid_path_list)
+        select_path_list = acquireSelection_multi(valid_path_list)
         # input()
 
 

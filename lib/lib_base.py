@@ -1,6 +1,5 @@
 import os
 import re
-import time
 
 
 def highlight_str(string, status, char='default'):
@@ -48,7 +47,7 @@ def file_re(paths, re_str):
     return file_lst
 
 
-def acquireSecletion_print(lst):
+def acquireSelection_print(lst):
     """打印选择时的 选择框"""
     index = 0
     for i in lst:
@@ -56,8 +55,8 @@ def acquireSecletion_print(lst):
         index += 1
 
 
-def acquireSecletion_vaild(choice, lst):
-    '''检验单选选项是否有效'''
+def acquireSelection_valid(choice, lst):
+    """检验单选选项是否有效"""
     if choice.isdigit():
         choice = int(choice)
         if 0 <= choice < len(lst):
@@ -65,53 +64,55 @@ def acquireSecletion_vaild(choice, lst):
     return
 
 
-def acquireSecletion_raw(lst):
+def acquireSelection_raw(lst):
     """
     给定lst 返回选择序号
     :param lst:
     :return:
     """
     while True:
-        acquireSecletion_print(lst)
+        acquireSelection_print(lst)
         choice = input(highlight_str("\t输入选择序号:", "input"))
         if not choice.isdigit():
             print('\t\033[1;31;40m输入不合法, 请重新输入\033[0m')
         if not(0 <= int(choice)) or (not int(choice) <= len(lst)):
             print('\t\033[1;31;40m输入范围不正确, 请重新输入\033[0m')
-        return acquireSecletion_vaild(choice, lst)
+        return acquireSelection_valid(choice, lst)
 
 
-def acquireSecletion_echo(lst, echo_str='\t您的文件名将会以 \033[1;35m <%s> \033[0m!作业要求的形式自动命名\n'):
+def acquireSelection_echo(lst, echo_str="\t您的文件名将会以 \033[1;35m <%s> \033[0m!作业要求的形式自动命名\n"):
     """
     给定列表 和含%s 的字符串， 获取用户选择， 打印回显
     :param lst:
+    :param echo_str: 回显字符串
     :return:
     """
-    acquire_num = acquireSecletion_raw(lst)
+    acquire_num = acquireSelection_raw(lst)
     print(echo_str.replace("%s", lst[acquire_num]))
     return acquire_num
 
 
-def acquireSecletion_multi(lst, echo_str='\t您的文件名将会以 \033[1;35m <%s> \033[0m!作业要求的形式自动命名\n'):
+def acquireSelection_multi(lst, echo_str='\t您的文件名将会以 \033[1;35m <%s> \033[0m!作业要求的形式自动命名\n'):
     """
     给定列表 和含%s 的字符串， 获取用户选择
     :param lst:
+    :param echo_str: 回显字符串
     :return:
     """
     result_lst = []
     while True:
-        acquireSecletion_print(lst)
+        acquireSelection_print(lst)
         choice_str = input(highlight_str("\t输入选择序号(多选 空格分割) :", "input"))
         if choice_str == '':
             return lst
         choice_list = choice_str.split(' ')
         for choice in choice_list:
-            result = acquireSecletion_vaild(choice, lst)
+            result = acquireSelection_valid(choice, lst)
             if result == 0 or result:
                 result_lst.append(lst[result])
         return result_lst
 
 
 if __name__ == '__main__':
-    acquireSecletion_echo([2, 3, 4])
+    acquireSelection_echo([2, 3, 4])
     wait_anime(3)

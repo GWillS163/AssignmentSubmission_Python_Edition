@@ -76,7 +76,7 @@ def makeAssignment(assignment_str, update_info):
     return local_conf
 
 
-def Despatch_Rule(local_conf, img=None):
+def Dispatch_Rule(local_conf, img=None):
     """发布规则"""
     attachments = [local_conf] if not img else [local_conf, img]
     mail = {
@@ -89,7 +89,7 @@ def Despatch_Rule(local_conf, img=None):
 
 
 def move2History():
-    confFile = config_folder + f'AssginConf{currentTime}.ini'
+    confFile = config_folder + f'AssignConf{currentTime}.ini'
     os.rename(local_conf, confFile)
     return confFile
 
@@ -113,7 +113,7 @@ def despatch_main():
         img_conf = None
     local_config_path = parseStr2config(parseCsv2Config(csvFile))
     # local_config_path = makeAssignment(assignment_str, update_info)
-    Despatch_Rule(local_config_path, img_conf)
+    Dispatch_Rule(local_config_path, img_conf)
     ReadOutputConfigAssign(local_config_path, encoding)
     move2History()
     if img_conf:  # 归档图片

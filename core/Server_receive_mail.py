@@ -82,7 +82,7 @@ def send_reply_mail(title, context, to_mail):
 
 def main_down_reply():
     """接收文件并下载"""
-    reply_data_lst = get_unread_File(czjtuacc, czjtupsd, download_path)
+    reply_data_lst = get_unread_File(userAcc, userPsd, download_path)
     n = 1
     length = len(reply_data_lst)
     print("\n正在发送回执:")
@@ -98,7 +98,7 @@ def main_down_reply():
 
 
 def receive_main():
-    get_unread_File(czjtuacc, czjtupsd, download_path, 'smtp.exmail.qq.com')
+    get_unread_File(userAcc, userPsd, download_path, 'smtp.exmail.qq.com')
     get_unread_File(file_rule_acc, file_rule_psd, download_path, 'smtp.qq.com')
     get_unread_File(file_inbox_acc, file_inbox_psd, download_path, 'smtp.qq.com')
 

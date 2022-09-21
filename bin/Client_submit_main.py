@@ -3,7 +3,7 @@ import sys
 sys.path.append("..")
 
 from lib.config_lib import *
-from lib.lib_base import acquireSecletion_echo, wait_anime
+from lib.lib_base import acquireSelection_echo, wait_anime
 from lib.mail_zmail import *
 from lib.mail_pop3 import *
 from lib.getStuInfo import *
@@ -102,7 +102,7 @@ def dragCLI(raw_file_lst):
         while True:  # 一直选择防止重复。
             print("文件:" + highlight_str("是什么作业?", 'light_blue', file_name))
             # print(f'\033[1;36;52m<{file_name}>\033[0m是什么作业?')
-            curriculumNum = acquireSecletion_echo(AssignList)
+            curriculumNum = acquireSelection_echo(AssignList)
             if not curriculumNum in prevent_duplicate:
                 break
             print(highlight_str("已选择过本课程作业", "red", "Error"))
@@ -174,73 +174,36 @@ def menu1_chg_config(Old_IDENTITY, mailPasswd):
         except Exception as E:
             print(E)
 
-def menu2_open_advanced(IDENTITY, mailPasswd):
+
+def menu2_open_advanced(stuId, stuMailPasswd):
     try:
-        mailAccount = f"{IDENTITY}@czjtu.edu.cn"
+        stuMailAdd = f"{stuId}@czjtu.edu.cn"
         print(highlight_str("http://mail.czjtu.edu.cn2, 官网←可重设密码", "blue", "官网找回密码👉") +
-              f"\n你的账号: {IDENTITY}@czjtu.edu.cn")
-              # "\n初始密码:Czjt+身份证后六位 或 Abc+身份证后六位 或 Hbxy+身份证后六位。但建议直接重设密码")
+              f"\n你的账号: {stuId}@czjtu.edu.cn")
         while True:
-            mailPasswd = input(highlight_str(f'请输入密码:', "input"))
+            stuMailPasswd = input(highlight_str(f'请输入密码:', "input"))
             print("\n正在发送测试邮件")
             try:
-                sendMail(ACCOUNT, [], mailAccount, mailPasswd, [], mailAccount, f"测试邮件 By Assignment_Submit_Tool_v{version}")
+                sendMail(ACCOUNT, [], stuMailAdd, stuMailPasswd, [], stuMailAdd, f"测试邮件 By Assignment_Submit_Tool_v{version}")
             except Exception as E:
                 print("请重新输入，因为出现了异常", E)
                 continue
             time.sleep(1)
             break
-            # if not input(highlight_str("你是否收到测试邮件[回车确认保存/N]", "input")):
-            #     break
     except KeyboardInterrupt:
         print("\n退出，将不保存")
         return
-    mailPasswdEncryed = encrypt(IDENTITY, mailPasswd, )
-    writeMailCFG(mailAccount, mailPasswdEncryed, ConfFile, encoding)
+    mailPasswdEncrypted = encrypt(stuId, stuMailPasswd, )
+    writeMailCFG(stuMailAdd, mailPasswdEncrypted, ConfFile, encoding)
     print('\033[1;32;40m[OK]\033[0m 模式更新')
 
 
-def menu3_submitted_query(IDENTITY, mailPasswd):
-    """
-
-    :param IDENTITY:
-    :param mailPasswd:
-    :return:
-    """
-    if not mailPasswd:
-        print(highlight_str("未激活高级模式", "red", "Error"))
-        return
-    if not os.path.exists(LocalSendHistory):
-        print(highlight_str("未记录过发送历史", "red", "Error"))
-        return
-    print(highlight_str("仅为本地发送的记录", 'yellow', "Notice"))
-    try:
-        with open(LocalSendHistory, mode='r', encoding=encoding) as f:
-            for line in f:
-                print(line, end='')
-                time.sleep(0.3)
-        wait_anime(20)
-    except KeyboardInterrupt:
-        return
+def menu3_submitted_query(stuId, stuMailPasswd):
+    print("通用版下取消")
 
 
-def menu4_about(IDENTITY, mailPasswd):
-    """服务端向邮箱发送提醒，本函数进行查询邮件"""
-    if not mailPasswd:
-        print(highlight_str("未激活高级模式", "red", "Error"))
-        return
-    print(highlight_str("正在查询", 'blue', "历史消息记录"))
-    print(f"{'日期':^22}\t {'来自':^28}\t {'标题':^15}\n")
-    try:
-        get_all_receive(f"{IDENTITY}@czjtu.edu.cn", mailPasswd, 50, submit_mail_flag)
-    #     print("查询结束")
-        print("本内测版开发中... 客户端不受影响")
-        # print("如何打开被收提醒")
-        print("当作业被收集时，会将向你的账号发送一个提醒")
-        print("当将你的企业邮账号绑定至手机QQ，即可及时收到提醒")
-        wait_anime(40)
-    except KeyboardInterrupt:
-        return
+def menu4_about(stuId, stuMailPasswd):
+    print("通用版下取消")
 
 
 def main():
