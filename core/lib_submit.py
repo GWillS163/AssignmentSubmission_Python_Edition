@@ -104,6 +104,16 @@ def detect_file():
         file_lst.append(sys.argv[i])
     return file_lst
 
+def encryptHash():
+    # 导入密码加密模块
+    import hashlib
+    # 1.创建一个hash对象
+    h = hashlib.sha256()
+    # 2.填充要加密的数据
+    passwordstr = '123456'
+    h.update(bytes(passwordstr, encoding='utf-8'))
+    # 3.获取加密结果
+    pawd_result = h.hexdigest()
 
 def RenameByRule(FileFullPath, FileRule, CLAZZ, IDENTITY, ACCOUNT):
     """
